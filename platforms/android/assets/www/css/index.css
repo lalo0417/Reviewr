@@ -1,0 +1,431 @@
+* {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    padding: 0;
+    /* make transparent link selection, adjust last value opacity 0 to 1.0 */
+}
+
+#reviewImage {
+    border-radius: 300px;
+    border: solid #4b90c3 15px;
+    width: 300px;
+    height: 300px;
+}
+
+#reviewStars {
+    color: #ffe165;
+    font-size: 4em;
+    margin: 0;
+    margin-bottom: 15px;
+}
+
+body {
+    -webkit-touch-callout: none;
+    /* prevent callout to copy image, etc when tap to hold */
+    -webkit-text-size-adjust: none;
+    /* prevent webkit from resizing text to fit */
+    -webkit-user-select: none;
+    /* prevent copy paste, to allow, change 'none' to 'text' */
+    background-color: #d8f0fd;
+    /*
+    background-image: linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
+    background-image: -webkit-linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
+    background-image: -ms-linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
+    background-image: -webkit-gradient( linear, left top, left bottom, color-stop(0, #A7A7A7), color-stop(0.51, #E4E4E4));
+    background-attachment: fixed;
+*/
+    font-family: 'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
+    font-size: 12px;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    text-transform: uppercase;
+    width: 100%;
+}
+
+
+/* Portrait layout (default) */
+
+.app {
+    background: url(../img/logo.png) no-repeat center top;
+    /* 170px x 200px */
+    position: absolute;
+    /* position in the center of the screen */
+    left: 50%;
+    top: 50%;
+    height: 50px;
+    /* text area height */
+    width: 225px;
+    /* text area width */
+    text-align: center;
+    /*    padding: 180px 0px 0px 0px;*/
+    /* image height is 200px (bottom 20px are overlapped with text) */
+    /*    margin: -115px 0px 0px -112px;*/
+    /* offset vertical: half of image height and text area height */
+    /* offset horizontal: half of text area width */
+}
+
+
+/* Landscape layout (with min-width) */
+
+@media screen and (min-aspect-ratio: 1/1) and (min-width:400px) {
+    .app {
+        background-position: left center;
+        padding: 75px 0px 75px 170px;
+        /* padding-top + padding-bottom + text area = image height */
+        margin: -90px 0px 0px -198px;
+        /* offset vertical: half of image height */
+        /* offset horizontal: half of image width and text area width */
+    }
+}
+
+button {
+    border: none;
+    background: none;
+    border-radius: 50px;
+    width: 50px;
+    height: 50px;
+}
+
+button:active {
+    background-color: rgba(0, 0, 0, 0.19);
+}
+
+button:focus {
+    outline: 0;
+}
+
+h1 {
+    font-size: 24px;
+    font-weight: normal;
+    margin: 0px;
+    overflow: visible;
+    padding: 0px;
+    text-align: center;
+}
+
+.event {
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    color: #FFFFFF;
+    font-size: 12px;
+    margin: 0px 30px;
+    padding: 2px 0px;
+}
+
+.event.listening {
+    background-color: #333333;
+    display: block;
+}
+
+.event.received {
+    background-color: #4B946A;
+    display: none;
+}
+
+@keyframes fade {
+    from {
+        opacity: 1.0;
+    }
+    50% {
+        opacity: 0.4;
+    }
+    to {
+        opacity: 1.0;
+    }
+}
+
+@-webkit-keyframes fade {
+    from {
+        opacity: 1.0;
+    }
+    50% {
+        opacity: 0.4;
+    }
+    to {
+        opacity: 1.0;
+    }
+}
+
+.blink {
+    animation: fade 3000ms infinite;
+    -webkit-animation: fade 3000ms infinite;
+}
+
+.active-page {
+    -webkit-animation: slide-left 0.6s 1;
+    animation: slide-left 0.6s 1;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+    z-index: 100;
+    padding: none;
+}
+
+.inactive-page {
+    -webkit-animation: slide-right 0.6s 1;
+    animation: slide-right 0.6s 1;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+    z-index: 10;
+}
+
+[data-role="page"] {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    transform: translate3d(100%, 0, 0);
+    /*default position off the screen */
+}
+
+[data-role="page"] h2 {
+    font-size: 2em;
+    text-align: center;
+    font-family: 'Montserrat', 'Archivo Black', sans-serif;
+}
+
+[data-role="page"] h3 {
+    font-size: 2rem;
+    font-family: 'Montserrat', 'Archivo Black', sans-serif;
+}
+
+@keyframes slide-left {
+    0% {
+        transform: translate3d(100%, 0, 0);
+    }
+    100% {
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+@keyframes slide-right {
+    0% {
+        transform: translate3d(0, 0, 0);
+    }
+    100% {
+        transform: translate3d(-100%, 0, 0);
+    }
+}
+
+.hidden {
+    display: none;
+}
+
+
+/*STARS*/
+
+div.stars {
+    width: 270px;
+    text-align: center;
+    margin-right: auto;
+    margin-left: auto;
+    maring-top: 10px;
+}
+
+input.star {
+    display: none;
+}
+
+label.star {
+    float: right;
+    padding: 10px;
+    font-size: 35px;
+    color: #444;
+    transition: all .2s;
+}
+
+input.star:checked ~ label.star:before {
+    content: '\f005';
+    color: #FD4;
+    transition: all .25s;
+}
+
+input.star-5:checked ~ label.star:before {
+    color: #FE7;
+    text-shadow: 0 0 20px #f4ce69;
+}
+
+input.star-1:checked ~ label.star:before {
+    color: #F62;
+}
+
+label.star:before {
+    content: '\f006';
+    font-family: FontAwesome;
+}
+
+
+/*CSS STyling*/
+
+.list-view {
+    color: white;
+    list-style-type: none;
+    overflow-y: scroll;
+    padding-left: 0px;
+    padding-bottom: 0px;
+    max-width: 100%;
+    height: 70%;
+    margin-bottom: 0px;
+    overflow-x: hidden;
+}
+
+li.list-item {
+    background-color: #4b90c3;
+    border-radius: 50px;
+    margin-bottom: 10px;
+    margin-left: 1%;
+    margin-right: 1%;
+    width: 98%;
+}
+
+li.list-item:last-child {
+    margin-bottom: 30px;
+}
+
+a.list-item {
+    display: block;
+    text-decoration: none;
+    color: white;
+    width: 100%;
+    font-size: 1rem;
+    padding: 10px 20px 10px 10px;
+    border-radius: 50px;
+}
+
+#reviewPageDiv {
+    text-align: center;
+}
+
+#reviewDescription {
+    width: 90%;
+    text-align: center;
+    margin: auto;
+    box-sizing: border-box;
+}
+
+#backButton {
+    color: #4b90c3;
+}
+
+#backButtonDiv {
+    margin: 10px 10px 10px 10px;
+}
+
+#reviewTitle {
+    margin-bottom: 20px;
+    margin-top: 0px;
+    color: #4b90c3;
+}
+
+#reviewrTitle {
+    background-color: #4b90c3;
+    padding: 0px 0px 10px 0px;
+    font-family: 'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
+}
+
+h1 {
+    color: white;
+    font-size: 3rem
+}
+
+#addDiv {
+    height: 30%;
+    text-align: center;
+}
+
+#makeNewReview {
+    font-size: 5.5rem;
+    text-decoration: none;
+    color: white;
+    margin-top: 10px;
+    width: 80px;
+}
+
+#fakeButton {
+    width: 100px;
+    height: 100px;
+    border-radius: 150px;
+    background-color: #4b90c3;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 15px;
+    box-shadow: 0px 7px 0px 0px #3f749b;
+}
+
+#fakeButton:active {
+    box-shadow: 0px 0px 0px 0px #3f749b;
+}
+
+
+/*Add review page*/
+
+#cameraButton {
+    color: #4b90c3;
+    font-size: 2em;
+    border-radius: 300px;
+    width: 300px;
+    height: 300px;
+    border: none;
+}
+
+.camButtonDiv {
+    border-radius: 300px;
+    border: solid #4b90c3 15px;
+    width: 300px;
+    height: 300px;
+    text-align: center;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 10px;
+}
+
+#reviewForm {
+    text-align: center;
+    display: inline-block;
+    font-size: 20px;
+    width: 50%;
+    color: #4b90c3;
+    font-family: 'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
+}
+
+#reviewFormDiv {
+    text-align: center;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+#yesNoButtons {
+    text-align: center;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 10px;
+}
+
+#addButton {
+    color: #4b90c3;
+    font-size: 30px;
+    margin-left: 15px;
+}
+
+#cancelButton {
+    color: #4b90c3;
+    font-size: 30px;
+    margin-right: 15px;
+}
+
+#imgFrame {
+    border-radius: 300px;
+    width: 300px;
+    height: 300px;
+    border: none;
+}
+
+#front {
+    z-index: 5;
+    position: fixed;
+}
+
+#behind {
+    z-index: 1;
+    position: fixed;
+}

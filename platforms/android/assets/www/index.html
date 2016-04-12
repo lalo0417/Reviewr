@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <!--    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">-->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Archivo+Black' rel='stylesheet' type='text/css'>
+    <title>Review&#1071;</title>
+</head>
+
+<body>
+    <nav id="reviewrTitle">
+        <h1>Review&#1071;</h1>
+    </nav>
+    <section data-role="page" id="list">
+        <ul class="list-view">
+            <li class="loading blink">Loading...</li>
+        </ul>
+        <div id="addDiv">
+            <div id="fakeButton">
+                <a id="makeNewReview" class="page-link" href="#add">+</a>
+            </div>
+        </div>
+    </section>
+
+    <section data-role="page" id="details">
+        <div id="backButtonDiv">
+            <a id="backButton" class="page-link" href="#list"><i class="fa fa-remove fa-4x"></i> </a>
+        </div>
+        <div id="reviewPageDiv">
+            <h2 id="reviewTitle"></h2>
+            <img id="reviewImage" src="">
+
+            <p id="reviewStars"></p>
+            <p id="reviewDescription"></p>
+        </div>
+    </section>
+
+    <section data-role="page" id="add">
+        <div class="camButtonDiv">
+            <div id="front">
+                <button id="cameraButton"><i id="camIcon" class="fa fa-camera-retro fa-5x"></i></button>
+            </div>
+            <div id="behind"><img id="imgFrame" src=""></div>
+        </div>
+
+        <div class="stars">
+
+            <form id="newRating" action="">
+
+                <input class="star star-5" id="star-5" type="radio" name="star" value="star-5" />
+                <label class="star star-5" for="star-5"></label>
+
+                <input class="star star-4" id="star-4" type="radio" name="star" value="star-4" />
+                <label class="star star-4" for="star-4"></label>
+
+                <input class="star star-3" id="star-3" type="radio" name="star" value="star-3" checked="checked" />
+                <label class="star star-3" for="star-3"></label>
+
+                <input class="star star-2" id="star-2" type="radio" name="star" value="star-2" />
+                <label class="star star-2" for="star-2"></label>
+
+                <input class="star star-1" id="star-1" type="radio" name="star" value="star-1" />
+                <label class="star star-1" for="star-1"></label>
+
+            </form>
+
+        </div>
+        <div id="reviewFormDiv">
+            <form id="reviewForm">
+                Title:
+                <br>
+                <input id="newTitle" type="text" name="title">
+                <br> Review:
+                <br>
+                <input id="newDescription" type="text" name="review">
+                <br>
+            </form>
+        </div>
+        <div id="yesNoButtons">
+            <a class="page-link" id="cancelButton" href="#list"><i class="fa fa-remove fa-2x"></i></a>
+            <a class="page-link" id="addButton" href="#list"><i class="fa fa-check fa-2x"></i> </a>
+        </div>
+    </section>
+
+    <script type="text/javascript" src="cordova.js"></script>
+    <script src="https://hammerjs.github.io/dist/hammer.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+</body>
+
+</html>
